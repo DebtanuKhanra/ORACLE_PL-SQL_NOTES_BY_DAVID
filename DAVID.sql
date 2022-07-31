@@ -255,6 +255,28 @@ dbms_output.put_line('The sum of '||num1|| ' and ' ||num2|| ' is: '||(num1+num2)
 end;
 /
 
+-- Write a program to print whether the number is prime or not
+
+  declare
+  l_num number(5):=&num;
+  l_isPrime boolean := true;
+  begin
+     for var in 2..l_num-1
+     loop
+       if mod(l_num,var) = 0 then
+          l_isPrime:= false;
+       end if;
+     end loop;
+   if l_isPrime =true then 
+     dbms_output.put_line('The number '|| l_num ||' is a Prime number');
+   else
+     dbms_output.put_line('The number '|| l_num ||' is not a Prime number');
+   end if;  
+  end;
+  /
+ 
+
+
 
 
 --WRITE A PROGRAM TO ADD 2NUMBER, create a host variable to accept the two numbers --
