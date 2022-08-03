@@ -420,7 +420,10 @@ the block is present inside the another block is visible to the child block but 
    end;
  end;
 
-
+-- SUGGESTION: https://www.oracle-world.com/plsql-advanced/pl-sql-nested-blocks/
+                     
+                     
+                     
                      -- Conditional Statement--
 
  help us to check some condtion and based on the conditon we execute different statement.
