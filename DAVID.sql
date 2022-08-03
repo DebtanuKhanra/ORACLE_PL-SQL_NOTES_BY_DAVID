@@ -420,7 +420,8 @@ the block is present inside the another block is visible to the child block but 
    end;
  end;
 
--- SUGGESTION: https://www.oracle-world.com/plsql-advanced/pl-sql-nested-blocks/
+
+--NOTE: This website is very useful to understand nested block easily :               https://www.oracle-world.com/plsql-advanced/pl-sql-nested-blocks/
                      
                      
                      
