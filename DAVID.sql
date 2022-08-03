@@ -274,6 +274,482 @@ end;
    end if;  
   end;
   /
+
+
+
+                    -- FROM HERE MD ISTIAQUE ANSARI CONTINUE..--
+
+  
+                     --Nested block--
+
+Block with a block is called is nested block.
+the block which contains another block is called as parent block.
+the block is present inside the another block is visible to the child block but vise versa is not possible.
+
+                     --Syntax--
+   --parent block
+     DECLARE
+       declare variable;
+     BEGIN
+   --child block
+     DECLARE
+      declare variable;
+     BEGIN
+       statement_parent;
+        statement_child;
+     END;
+     END;
+
+
+
+-- parent block
+   declare
+       l_parent number(5):=10;
+   begin
+  --child block
+   declare
+       l_child number(5):= 10;
+   begin
+   dbms_output.put_line('Parent block variable value is' || l_parent);
+   dbms_output.put_line('Parent block variable value is' || l_child);
+   end;
+ end;
+
+
+                     -- Conditional Statement--
+
+ help us to check some condtion and based on the conditon we execute different statement.
+ 
+                     -- SYNTAX--
+
+   if condition1 then 
+   statement1
+   else
+   statement2
+   end if;
+
+                     -- Nested conditional Statement--
+
+                       -- SYNTAX--
+
+   if condition1 then
+        if condition2 then 
+           statement1
+        else
+           statement2
+        end if;
+      
+       else
+          statement3
+       end if;
+ 
+                    -- Multiple if conditional Statement--
+
+                    -- SYNTAX--
+
+   if condition1 then 
+      statement1
+   elseif
+      statement2
+   elseif
+      statement3
+   else
+      statement4
+   endif;
+
+
+  -- plsql does not have % modulus operator.
+
+  ques: Write a plsql program to check whether a given number is even or odd.
+
+  declare
+  l_num number(5):=100;
+  begin
+  if mod(l_num,2) = 0 then 
+     dbms_output.put_line('The given number is even number');
+  else
+     dbms_output.put_line('The given number is not even number');
+  end if;
+  end;
+  /
+
+
+ -- Write a program to display the part of the day.
+ 00- 6am its early morning
+ 601 to 12pm morning
+ 12pm to 4pm afternoon.
+ 4pm to 8pm its evening.
+ 8pm to 23.59 it is night.
+
+ declare 
+ l_date timestamp:= to_timestamp('&date','dd-mon-yyyy hh24:mi:ss');
+ begin
+     if to_number(to_char(l_date,'hh24')) between 0 and 6 then
+         dbms_output.put_line('Its early morning');
+     elseif to_number(to_char(l_date,'hh24')) between 6 and 12 then
+         dbms_output.put_line('Its morning');
+     elseif to_number(to_char(l_date,'hh24')) between 13 and 15 then
+         dbms_output.put_line('Its afternon');
+     elseif to_number(to_char(l_date,'hh24')) between 16 and 19 then
+         dbms_output.put_line('Its evening);
+     elseif to_number(to_char(l_date,'hh24')) between 20 and 23 then
+         dbms_output.put_line('Its night);
+  end if;
+end;
+/
+
+
+                -- switch--
+
+ques: write a program to check the salary of employee is high , low, medium
+
+ 0 - 2500 its low
+ 2501 to 8000 its medium
+ 8001 its high.
+
+                -- SYNTAX--
+
+  case
+    simple case
+       case expr -- value
+           when value1 then 
+              ststm1
+           when values2 then 
+              statm2
+           else
+              statm3
+           end case;
+
+
+-- check number is even or odd using switch case
+
+  declare
+  l_num number(5):= 100;
+  begin
+  case mod(l_num,2)
+  when 0 then
+     dbms_output.put_line('The given number is even');
+  else
+     dbms_output.put_line('The given number is odd');
+  end case;
+end;
+/
+
+
+               -- search Case--
+               -- SYNTAX--
+
+  case
+     when condition1 and condition2 then 
+           statement1
+     when condition3 and condition4 then 
+           statement2
+     else
+           statement3
+  end case
+
+
+  -- Write a program which will display the grade of an student based on his marks.
+  -- 91 to 100 excellent
+  -- 81 to 90 very good
+  -- 71 to 80 good
+  -- 60-70 average
+  -- <60 below average.
+
+  declare
+  l_marks number(5):=&marks;
+  begin
+    case
+        when l_marks between 91 and 100 then 
+          dbms_output.put_line('The grade is excellent');
+        when l_marks between 81 and 90 then 
+          dbms_output.put_line('The grade is very good);
+        when l_marks between 71 and 80 then 
+          dbms_output.put_line('The grade is good');
+        when l_marks between 60 and 70 then 
+          dbms_output.put_line('The grade is average');
+        else
+          dbms_output.put_line('The grade is below average);
+    end case;
+  end;
+ /
+
+
+
+                -- loop --
+
+When we want to executes same task multiple times then we use loop construct.
+-- Simple loop.
+
+                -- SYNTAX-- LOOP WITH IF ELSE CONDTITION
+  loop
+   if condition then 
+     exit;
+   end if;
+ end loop;
+
+                -- SYNTAX--SIMPLE LOOP
+
+ loop
+  exit when condition ;
+ end loop;
+
+-- Write a program to print the number between 1 to 10
+
+   declare
+   l_num number(5):=1;
+   begin
+     loop
+       l_num:= l_num + 1;
+       if l_num > 10 then 
+          exit;
+       end if;
+       dbms_output.put_line(l_num);
+     end loop;
+   end;
+ /
+
+
+-- write a program to print the table number of 3
+
+ declare 
+  l_num number(5):=0;
+  begin
+    dbms_output.put_line('Table of 3 is:');
+    loop
+      l_num:= l_num + 1;
+        if l_num > 10 then 
+          exit;
+        end if;
+      dbms_output.put_line('3 * '||l_num || ' = '|| 3*l_num);
+    end loop;
+  end;
+ /
+
+
+           -- While Loop--
+           -- SYNTAX--
+
+        while condition
+           loop
+             statement;
+           end loop;
+
+  declare
+  l_num number(5):=1;
+  begin
+    dbms_output.put_line('Table of 3 is:');
+  while(l_num < 11)
+  loop
+  dbms_output.put_line('3 * '||l_num || ' = '|| 3*l_num);
+  l_num:= l_num+1;
+  end loop;
+ end;
+ /
+  
+
+
+-- Write a program to calculate the factorial of a number
+
+   -- using while loop--
+
+ declare 
+  l_num number(5):= &num;
+  l_cnt number(5):= l_num;
+  l_fact number(5):= 1;
+  begin 
+    while(l_cnt > 0)
+     loop
+     l_fact:= l_fact * l_cnt;
+     l_cnt:= l_cnt -1;
+    end loop;
+  dbms_output.put_line('Factorial of '|| l_num || 'is ' || l_fact);
+  end;
+ /
+
+     -- using simple for loop
+
+  declare
+  l_num number(5):= &num;
+  l_fact number(5):= 1;
+  begin
+   dbms_output.put_line('Factorial of '|| l_num || 'is ');
+    loop
+        l_num:= l_num - 1;
+        if l_fact = 0 then
+           exit;
+        end if;
+      l_fact:= l_fact*l_num;
+    end loop;
+  dbms_output.put_line(l_fact);
+ end;
+/
+ 
+              -- DRY CODE--
+
+case1:  r = 1, fact = 1
+    fact = 1*1 = 1
+
+    r = 2, fact = 1
+    fact = 1*2 = 2
+
+    r = 3, fact = 2
+    fact = 3*2 = 6
+
+    r = 4, fact = 6
+    fact = 6*4 = 24
+
+    r = 5, fact = 24
+    fact = 5*24 = 120
+
+
+ -- Write a program to print whether the number is even or odd
+ 
+ declare
+ l_num number(5):=&num;
+ begin
+ if mod(l_num,2)=0 then
+ dbms_output.put_line('Given number is even number');
+ else
+ dbms_output.put_line('Given number is odd number');
+ end if;
+ end;
+ /
+
+
+-- Write a program to print whether the number is prime or not
+ 
+
+  declare
+  l_num number(5):=&num;
+  l_isPrime boolean := true;
+  begin
+     for var in 2..l_num-1
+     loop
+       if mod(l_num,var) = 0 then       
+          l_isPrime:= false;
+       end if;
+     end loop;
+   if l_isPrime =true then 
+     dbms_output.put_line('The number '|| l_num ||' is a Prime number');
+   else
+     dbms_output.put_line('The number '|| l_num ||' is not a Prime number');
+   end if;  
+  end;
+  /
+
+
+                                   -- Nested for loop---
+
+  -- Nested loop is loop within another loop.
+
+                                   -- SYNTAX--
+
+   <<OUTERLOOP>>
+   FOR VAR1 IN LOWERBOUND..UPPERBOUND
+     LOOP
+       STATEMENTS
+   <<INNERLOOP>>
+   FOR VAR2 IN LOWERBOUND..UPPERBOUND
+     LOOP
+       STATEMENTS
+     END LOOP;
+    END LOOP;
+  
+  
+  
+   BEGIN
+   <<OUTER LOOP>>
+   FOR i in 1..10
+      LOOP
+        dbms_output.put_line('Outer for loop '|| i);
+     <<INNER LOOP>>
+     FOR j in 1..3
+        LOOP
+        dbms_output.put_line('Inner for loop '|| j);
+        END LOOP;
+      END LOOP;
+   END;
+  /
+    
+                                   -- Continue Statement--
+ 
+  --whenever plsql comes acroos continue statement, it will not excecute any statement within the loop for the current iteration.
+  -- It will just skip the current iteration and go to the current next iteration.
+  
+  BEGIN
+   FOR i in 1..10
+      LOOP
+        dbms_output.put_line('Outer for loop '|| i);
+     FOR j in 1..3
+        LOOP
+        CONTINUE WHEN MOD(j,2) = 0 then
+           dbms_output.put_line(j);
+        END LOOP;
+      END LOOP;
+   END;
+  /
+
+
+                                  -- LEBELS TO LOOP--
+
+
+   -- Whenever we want to skip the current loop and wanna go another loop then we use lebels.
+
+
+  BEGIN
+   <<OUTERLOOP>>
+   FOR i in 1..10
+    LOOP
+      dbms_output.put_line('Outer loop value '|| i);
+      <<INNERLOOP>>
+      FOR j in 1..3
+        LOOP
+         CONTINUE OUTERLOOP WHEN MOD(J,2) = 0;
+           dbms_output.put_line(j);
+        END LOOP;
+     END LOOP;
+   END;
+  /
+
+
+
+
+                                 -- GO TO STATEMENT--
+
+-- Branching statement, it is mainly used to branch from one part of the program to another part
+                  -- Restriction on GoTo statement--
+-- 1. We cannot use the goto statement to transfer the control out of a subprogram  or into exception handling block.
+-- 2. We cannot use the goto statement to transfer the control out from exceptional handling section to the executable block.
+
+  
+ DECLARE 
+  l_num number(5):= &num;
+  l_flag char(1):= NULL;
+   BEGIN
+    IF MOD(l_num,2) = 0 then
+       l_flag:= 'E';
+         GOTO evenlebel;
+    ELSE
+       l_flag:= 'O';
+         GOTO oddlebel;
+     END IF;
+ 
+   <<evenlebel>>
+   IF l_flag = 'E' THEN 
+     dbms_output.put_line('The number is even');
+     l_flag:= NULL;
+   END IF;
+    
+   <<Oddlebel>>
+   IF l_flag = 'E' THEN 
+     dbms_output.put_line('The number is odd');
+     l_flag:= NULL;
+   END IF;
+ END;
+ /
+
+                         --  UPTO HERE  --
  
 
 
@@ -805,4 +1281,4 @@ SELECT*FROM FIRST_TABLE  FULL OUTER JOIN SECOND_TABLE ON FIRST_TABLE.ID=SECOND_T
 SELECT STAFF_ID,E_NAME,E_SALARY FROM FIRST_TABLE CROSS JOIN SECOND_TABLE 
 
 
-
+-- Istiaque
